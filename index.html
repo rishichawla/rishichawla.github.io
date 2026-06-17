@@ -1,462 +1,181 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-    <title>Rishi Chawla</title>
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <link href="./css/mdb.min.css" rel="stylesheet">
-    <link href="./css/style.css" rel="stylesheet">
-    <style type="text/css" id="jarallax-clip-0">#jarallax-container-0 {
-        clip: rect(0 728px 600px 0);
-        clip: rect(0, 728px, 600px, 0);
-    }</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rishi Chawla | Full-Screen Environment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="developer">
+<body>
 
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar top-nav-collapse">
-        <div class="container">
-            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
-                    data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"> </span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav mr-auto smooth-scroll">
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light" href="#home">
-                            Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light" href="#about" data-offset="100">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light" href="#skills" data-offset="100">Skills</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light" href="#works" data-offset="100">Works</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light" href="#contact" data-offset="100">Contact</a>
-                    </li>
-                </ul>
-                <!-- Social Icon  -->
-                <ul class="navbar-nav nav-flex-icons">
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light" href="https://www.facebook.com/chawla.rishi14">
-                            <i class="fab fa-facebook-f light-green-text-2"> </i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light" href="https://www.linkedin.com/in/rishichawla14/">
-                            <i class="fab fa-linkedIn light-green-text-2"> </i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light" href="https://github.com/rishichawla">
-                            <i class="fab fa-github light-green-text-2"> </i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light" href="https://www.instagram.com/rishichawla17/">
-                            <i class="fab fa-instagram light-green-text-2"> </i>
-                        </a>
-                    </li>
-                </ul>
+    <div class="cursor-glow" id="glow"></div>
+
+    <div class="ide-container">
+        
+        <header class="ide-header">
+            <div class="window-controls">
+                <span class="dot dot-close"></span>
+                <span class="dot dot-minimize"></span>
+                <span class="dot dot-expand"></span>
             </div>
-        </div>
-    </nav>
-    <div id="home" class="view jarallax" data-jarallax="{&quot;speed&quot;: 0.2}"
-         style="background-image: none; background-repeat: no-repeat; background-size: cover; background-position: center center; z-index: 0;"
-         data-jarallax-original-styles="background-image: url('https://mdbootstrap.com/img/Photos/Others/forest1.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
-        <div class="mask rgba-white-strong">
-            <div class="container h-100 d-flex justify-content-center align-items-center">
-                <div class="row smooth-scroll">
-                    <div class="col-md-12 pt-3">
-                        <div class="white-text text-center pt-5">
-                            <h1 class="display-2 mb-4 dark-grey-text wow fadeIn"
-                                style="visibility: visible; animation-name: fadeIn;">
-                                I am <strong>Rishi Chawla</strong>
-                            </h1>
-                            <h5 class="text-uppercase font-weight-bold wow fadeIn" data-wow-delay="0.4s"
-                                style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;">
-                                <mark>Developer, Learner, Explorer &amp; Problem Solver</mark>
-                            </h5>
-                            <a href="#about" class="btn btn-floating btn-large wow fadeIn waves-effect waves-light"
-                               data-wow-delay="0.4s" data-offset="100"
-                               style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;">
-                                <i class="fas fa-angle-down" aria-hidden="true"> </i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <div class="window-title">rishi@mbp: ~/workspace/portfolio — zsh — 110×45</div>
+            <div class="header-right">
+                <button class="theme-toggle" id="themeBtn" aria-label="Toggle Theme">
+                    <svg class="dark-icon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.11 5.4 5.4 0 0 1-5.4-5.4c0-2.14 1.25-3.97 3.06-4.82C13.56 3.06 12.79 3 12 3z"/></svg>
+                    <svg class="light-icon" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 0 0-1.41 0 .996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 0 0-1.41 0 .996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm-12.37 1.41a.996.996 0 0 0 0-1.41.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM18.36 5.64a.996.996 0 0 0 0-1.41.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
+                </button>
             </div>
-        </div>
-        <!--    TODO: fix background image-->
-        <div id="jarallax-container-0"
-             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -100;">
-            <div style="background-position: center; background-blend-mode: darken; background-size: 100%; background-image: url('background.png'); position: relative; top: 0; left: 0; width: 100%; height: 723px; overflow: hidden; pointer-events: none; margin-top: 15px; transform: translate3d(0px, -133.8px, 0px);"></div>
-        </div>
-    </div>
-</header>
+        </header>
 
-<main>
-    <div class="container">
-        <section id="about" class="section feature-box mb-5">
-            <h2 class="text-center text-uppercase my-5 pt-5 wow fadeIn" data-wow-delay="0.2s"
-                style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">
-                About <strong>me</strong>
-            </h2>
-            <p class="text-center w-responsive mx-auto wow fadeIn my-5" data-wow-delay="0.2s"
-               style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">
-                Reliable Student with skills in leadership and commitment. Expert at leading and coordinating with
-                others on innovative technical and group projects throughout history of academic excellence. Dedicated
-                to working until projects are completed and meeting highest standards. Skilled in Golang, SQL,
-                Micro-service Architecture with a keen interest in exploring cutting edge technologies.
-            </p>
-
-            <div class="row features-big text-center wow fadeIn" data-wow-delay="0.4s"
-                 style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;">
-                <div class="col-md-4 mb-5">
-                    <div class="card card-body hoverable">
-                        <i class="fas fa-laptop fa-3x mb-4" aria-hidden="true"> </i>
-                        <h5 class="font-weight-bold text-uppercase mb-4">Coder</h5>
-                        <p class="dark-grey-text">
-                            Active participant of numerous competitive coding events held across different platforms.
-                        </p>
+        <div class="ide-body">
+            
+            <aside class="ide-sidebar">
+                <div>
+                    <div class="sidebar-title">WORKSPACE EXPLORER</div>
+                    <div class="file-tree">
+                        <div class="tree-folder">📁 src/rishi-chawla</div>
+                        <button class="tree-file nav-item active" data-target="about">📄 readme.md</button>
+                        <button class="tree-file nav-item" data-target="experience">📄 experience.java</button>
+                        <button class="tree-file nav-item" data-target="skills">📄 env_stack.json</button>
+                        <button class="tree-file nav-item" data-target="education">📄 education.conf</button>
                     </div>
                 </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card card-body yellow hoverable">
-                        <i class="fas fa-code fa-3x mb-4" aria-hidden="true"> </i>
-                        <h5 class="font-weight-bold text-uppercase mb-4">Developer</h5>
-                        <p class="dark-grey-text">
-                            Skilled in Golang, Python with a keen interest in micro-service architecture and Data
-                            Science.
-                        </p>
-                    </div>
+                <div class="sidebar-actions">
+                    <a href="Rishi_Chawla_CV_June_2026.pdf" download="Rishi_Chawla_Resume.pdf" class="sidebar-btn">
+                        📥 Export System Blueprint (PDF)
+                    </a>
                 </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card card-body hoverable">
-                        <i class="fas fa-pencil-alt fa-3x mb-4" aria-hidden="true"> </i>
-                        <h5 class="font-weight-bold text-uppercase mb-4">
-                            Explorer
-                        </h5>
-                        <p class="dark-grey-text">
-                            Keen interest to learn new and upcoming technologies with practical hands-on and open-source
-                            contribution.
-                        </p>
-                    </div>
+            </aside>
+
+            <main class="ide-editor">
+                
+                <div class="editor-tabs">
+                    <div class="tab-item active" id="tab-about" data-target="about">readme.md <span class="tab-close">×</span></div>
+                    <div class="tab-item" id="tab-experience" data-target="experience">experience.java <span class="tab-close">×</span></div>
+                    <div class="tab-item" id="tab-skills" data-target="skills">env_stack.json <span class="tab-close">×</span></div>
+                    <div class="tab-item" id="tab-education" data-target="education">education.conf <span class="tab-close">×</span></div>
                 </div>
-            </div>
-        </section>
-    </div>
 
-    <div class="container-fluid" style="background-color: #f3f3f5;">
-        <div class="container py-4 pt-4">
-            <section id="skills">
-                <div class="row py-5">
-                    <div class="col-lg-6 col-md-12 mb-3 wow fadeIn" data-wow-delay="0.4s"
-                         style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;">
-                        <div class="d-flex justify-content-start">
-                            <h4 class="text-center text-uppercase mb-5 pb-3 mt-4 wow fadeIn" data-wow-delay="0.2s"
-                                style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">
-                                My <strong>experience</strong>
-                            </h4>
-                        </div>
-                        <blockquote class="blockquote bq-warning mb-4">
-                            <div class="row"><i class="fas fa-briefcase fa-x mb-1 mr-3 ml-3" aria-hidden="true"> </i>
-                                <h5 class="font-weight-bold mb-3">
-                                    Product Development Intern
-                                </h5>
-                            </div>
-                            <p class="row font-weight-bold ml-1 dark-grey-text mb-2">
-                                Appointy Software Inc., Bhopal
-                            </p>
-                            <p class="font-weight-bold ml-1 dark-grey-text mb-2">
-                                May, 2019 - July, 2019 (2 months)
-                            </p>
-                            <p class="mb-0 ml-1 light-grey-text">
-                                Built, implemented and enhanced Event Sourcing Tool, Hisaab to generate meaningful and
-                                customisable reports based on database logs.
-                            </p>
-                        </blockquote>
-
-                        <blockquote class="blockquote bq-warning mt-1 mb-4">
-                            <div class="row"><i class="fas fa-briefcase fa-x mb-1 mr-3 ml-3" aria-hidden="true"> </i>
-                                <h5 class="font-weight-bold mb-3">
-                                    Senior Coordinator
-                                </h5>
-                            </div>
-                            <p class="row font-weight-bold ml-1 dark-grey-text mb-2">
-                                #include, SGSITS
-                            </p>
-                            <p class="font-weight-bold ml-1 dark-grey-text mb-2">
-                                October 2018 - Present (1 year)
-                            </p>
-                            <p class="mb-0 ml-1 light-grey-text">
-                                Working with a team of 40 technophiles and zealous learners, I try to unleash the best
-                                potential of fellow students by proving unparallel learning environment by collaboration
-                                and Hackathons.
-                            </p>
-                        </blockquote>
-
-                        <blockquote class="blockquote bq-warning mt-1 mb-4">
-                            <div class="row"><i class="fas fa-briefcase fa-x mb-1 mr-3 ml-3" aria-hidden="true"> </i>
-                                <h5 class="font-weight-bold mb-3">
-                                    Coordinator
-                                </h5>
-                            </div>
-                            <p class="row font-weight-bold ml-1 dark-grey-text mb-2">
-                                Club Codefoster
-                            </p>
-                            <p class="font-weight-bold ml-1 dark-grey-text mb-2">
-                                February 2018 - Present (1 year, 6 months)
-                            </p>
-                            <p class="mb-0 ml-1 light-grey-text">
-                                <!--                                TODO: Add description-->
-                            </p>
-                        </blockquote>
-                    </div>
-
-                    <div class="col-lg-5 offset-lg-1 col-md-12 mb-4 wow fadeIn" data-wow-delay="0.4s"
-                         style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;">
-                        <div class="d-flex justify-content-start">
-                            <h4 class="text-center text-uppercase mb-5 pb-3 mt-4 wow fadeIn" data-wow-delay="0.2s"
-                                style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">
-                                Development <strong>Skills</strong>
-                            </h4>
-                        </div>
-
-                        <p class="black-text text-uppercase font-weight-bold" align="justify">
-                            C/C++
-                        </p>
-                        <div class="md-progress">
-                            <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="25"
-                                 aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-
-                        <p class="black-text text-uppercase font-weight-bold pt-3" align="justify">
-                            Golang
-                        </p>
-                        <div class="md-progress">
-                            <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="25"
-                                 aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-
-                        <p class="black-text text-uppercase font-weight-bold pt-3" align="justify">
-                            Python
-                        </p>
-                        <div class="md-progress">
-                            <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="25"
-                                 aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-
-                        <p class="black-text text-uppercase font-weight-bold pt-3" align="justify">
-                            Data Structures and Algorithms
-                        </p>
-                        <div class="md-progress">
-                            <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="25"
-                                 aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-
-                        <p class="black-text text-uppercase font-weight-bold pt-3" align="justify">
-                            SQL
-                        </p>
-                        <div class="md-progress">
-                            <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="25"
-                                 aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-
-                        <p class="black-text text-uppercase font-weight-bold pt-3" align="justify">
-                            Git/GitHub
-                        </p>
-                        <div class="md-progress">
-                            <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="25"
-                                 aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-
-                        <p class="black-text text-uppercase font-weight-bold pt-3" align="justify">
-                            API Development
-                        </p>
-                        <div class="md-progress">
-                            <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="25"
-                                 aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
-    <div class="container">
-        <section id = "works" class="section feature-box my-5 pb-5">
-            <div id="colorlib-counter" class="colorlib-counters feature-box my-5 pb-5"
-                 data-stellar-background-ratio="0.5">
-                <div class="overlay"></div>
-                <div class="colorlib-narrow-content">
-                    <div class="row">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 text-center animate-box">
-                            <span class="colorlib-counter js-counter" data-from="0" data-to="300" data-speed="5000"
-                                  data-refresh-interval="50"> </span>
-                            <span class="colorlib-counter-label">Problems Solved</span>
-                        </div>
-                        <div class="col-md-3 text-center animate-box">
-                            <span class="colorlib-counter js-counter" data-from="0" data-to="10" data-speed="5000"
-                                  data-refresh-interval="50"></span>
-                            <span class="colorlib-counter-label">Projects</span>
-                        </div>
-                        <div class="col-md-3 text-center animate-box">
-                            <span class="colorlib-counter js-counter" data-from="0" data-to="15" data-speed="5000"
-                                  data-refresh-interval="50"></span>
-                            <span class="colorlib-counter-label">Technologies Worked on</span>
-                        </div>
-                        <div class="col-md-3 text-center animate-box">
-                            <span class="colorlib-counter js-counter" data-from="0" data-to="5" data-speed="5000"
-                                  data-refresh-interval="50"></span>
-                            <span class="colorlib-counter-label">Partners</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!--    TODO: fix quote-->
-    <div class="streak streak-photo streak-md"
-         style="background-image:url('https://mdbootstrap.com/img/Photos/Horizontal/Work/12-col/img%20%2811%29.jpg')">
-        <div class="mask flex-center rgba-indigo-strong">
-            <div class="white-text smooth-scroll mx-4">
-                <h2 class="h2-responsive wow fadeIn mb-5" style="visibility: visible; animation-name: fadeIn;">
-                    <i class="fas fa-quote-left" aria-hidden="true"> </i>
-                    Design is not just what it looks like and feels like. Design is how it works.
-                    <i class="fas fa-quote-right" aria-hidden="true"> </i>
-                </h2>
-                <h5 class="text-center font-italic wow fadeIn" data-wow-delay="0.2s"
-                    style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">~ Steve Jobs</h5>
-            </div>
-        </div>
-    </div>
-    <div id="contact" class="container">
-        <section class="section contact-section mt-4 mb-5">
-            <h2 class="text-center text-uppercase my-5 pt-5 wow fadeIn" data-wow-delay="0.2s"
-                style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">
-                Contact <strong>me</strong>
-            </h2>
-            <p class="text-center w-responsive mx-auto mb-5 pb-4 wow fadeIn" data-wow-delay="0.2s"
-               style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">
-                Feel free to discuss anything over a cup of coffee.
-            </p>
-            <div class="row wow fadeIn" data-wow-delay="0.4s"
-                 style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;">
-                <div class="col-md-8 mb-5">
-                    <form>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="md-form mb-0">
-                                    <div class="md-form mb-0">
-                                        <input type="text" id="form41" class="form-control">
-                                        <label for="form41" class="">Your name</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="md-form mb-0">
-                                    <div class="md-form mb-0">
-                                        <input type="text" id="form52" class="form-control">
-                                        <label for="form52" class="">Your email</label>
-                                    </div>
+                <div class="editor-stage">
+                    
+                    <section id="about" class="editor-section active">
+                        <div class="code-block-wrapper">
+                            <div class="line-numbers"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span></div>
+                            <div class="code-content">
+                                <h1 class="glitch-text">Rishi Chawla</h1>
+                                <h2 class="sub-role">&lt;Backend Software Engineer /&gt;</h2>
+                                <p class="summary-text">
+                                    Backend Software Engineer with 5 years of experience building distributed systems, event-driven microservices, and high-throughput data pipelines using Java, Spring Boot, and Apache Kafka. Proven record of owning features end-to-end from architecture through production at scale across fintech, e-commerce, and financial services domains.
+                                </p>
+                                <div class="contact-links">
+                                    <a href="mailto:rishi.chawla14@gmail.com" class="interactive-link"><span>📧 rishi.chawla14@gmail.com</span></a>
+                                    <a href="https://linkedin.com/in/rishichawla14" target="_blank" rel="noopener" class="interactive-link"><span>🔗 LinkedIn</span></a>
+                                    <a href="https://github.com/rishichawla" target="_blank" rel="noopener" class="interactive-link"><span>🐙 GitHub</span></a>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="md-form mb-0">
-                                    <input type="text" id="form51" class="form-control">
-                                    <label for="form51" class="">Subject</label>
+                    </section>
+
+                    <section id="experience" class="editor-section">
+                        <div class="code-block-wrapper job-entry">
+                            <div class="line-numbers"><span>08</span><span>09</span><span>10</span><span>11</span><span>12</span><span>13</span></div>
+                            <div class="code-content">
+                                <div class="job-headline">
+                                    <span class="syntax-keyword">public class</span> <span class="syntax-class">IntuitExperience</span> {
+                                    <span class="job-time">// Oct 2024 - Present | Bengaluru, India</span>
+                                </div>
+                                <div class="job-sub">Team: QuickBooks Reporting // Software Engineer 2</div>
+                                <ul class="bullet-list">
+                                    <li>Designed and deployed a Kafka-based asynchronous export pipeline using Spring Boot, decoupling report generation from request threads to eliminate timeouts; processed 34K+ export emails and handled 10%+ of peak traffic.</li>
+                                    <li>Architected migration of browser-rendered report exports to an async, fault-tolerant backend PDF generation service backed by AWS S3, eliminating client-side rendering failures and enabling reliable delivery at scale.</li>
+                                    <li>Built a generic template engine and config-driven data transformer in Java, enabling the Certified Payroll Report to be delivered without code changes.</li>
+                                    <li>Implemented thread-level request isolation in the export service to prevent noisy-neighbor interference across tenants, reducing export-related production incidents from ~1/month to zero.</li>
+                                    <li>Drove end-to-end delivery of the large-report feature spanning distributed system design, enabling 20K+ report views/month.</li>
+                                </ul>
+                                <div class="syntax-keyword">}</div>
+                            </div>
+                        </div>
+
+                        <div class="code-block-wrapper job-entry">
+                            <div class="line-numbers"><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span></div>
+                            <div class="code-content">
+                                <div class="job-headline">
+                                    <span class="syntax-keyword">public class</span> <span class="syntax-class">WalmartGlobalTech</span> {
+                                    <span class="job-time">// Sep 2023 - Oct 2024 | Bengaluru, India</span>
+                                </div>
+                                <div class="job-sub">Team: InfoSec // Software Engineer III</div>
+                                <ul class="bullet-list">
+                                    <li>Built a runtime script-interception layer to monitor and govern third-party JavaScript within browser sessions, enforcing PCI DSS compliance controls across consumer web properties.</li>
+                                    <li>Engineered a distributed network intelligence search platform consolidating data from multiple internal sources using Elasticsearch, achieving sub-5s query latency and 24-hour data freshness.</li>
+                                    <li>Implemented mTLS and IP-based allowlisting to secure a core Firewall-as-a-Service API endpoint, overcoming hardware device constraints.</li>
+                                    <li>Designed an event-driven cloud architecture using Azure Event Grid to intercept VM lifecycle events, enabling automated synchronization of compute IP addresses.</li>
+                                </ul>
+                                <div class="syntax-keyword">}</div>
+                            </div>
+                        </div>
+
+                        <div class="code-block-wrapper job-entry">
+                            <div class="line-numbers"><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span></div>
+                            <div class="code-content">
+                                <div class="job-headline">
+                                    <span class="syntax-keyword">public class</span> <span class="syntax-class">GoldmanSachs</span> {
+                                    <span class="job-time">// Jun 2021 - Sep 2023 | Bengaluru, India</span>
+                                </div>
+                                <div class="job-sub">Team: UK Deposits & Digital Workplace Engineering // Analyst</div>
+                                <ul class="bullet-list">
+                                    <li>Engineered a scheduled batch processing pipeline parsing 600K customer records to identify 12K+ eligible Cash ISA renewals annually and trigger automated downstream servicing flows.</li>
+                                    <li>Reduced agent handling time by 5 minutes per case by building an automated KYC identity verification workflow, eliminating redundant manual steps at scale.</li>
+                                    <li>Migrated full-text search from a third-party dependency to a self-hosted Elasticsearch service, adding contextual relevance scoring, faceted filters, and fuzzy matching.</li>
+                                    <li>Shipped core features for an internal Digital Assistant adopted by 45K employees globally.</li>
+                                </ul>
+                                <div class="syntax-keyword">}</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="skills" class="editor-section">
+                        <div class="code-block-wrapper">
+                            <div class="line-numbers"><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span></div>
+                            <div class="code-content">
+<pre class="json-output"><code>{
+  <span class="j-key">"languages"</span>: [<span class="j-val">"Java"</span>, <span class="j-val">"Golang"</span>, <span class="j-val">"TypeScript"</span>, <span class="j-val">"JavaScript"</span>],
+  <span class="j-key">"backend_ecosystem"</span>: [<span class="j-val">"Spring Boot"</span>, <span class="j-val">"Microservices"</span>, <span class="j-val">"REST APIs"</span>, <span class="j-val">"Distributed Systems"</span>],
+  <span class="j-key">"infrastructure_data"</span>: [<span class="j-val">"Apache Kafka"</span>, <span class="j-val">"AWS S3/EC2"</span>, <span class="j-val">"Docker"</span>, <span class="j-val">"Kubernetes"</span>, <span class="j-val">"Jenkins"</span>],
+  <span class="j-key">"frontend"</span>: [<span class="j-val">"React"</span>, <span class="j-val">"Angular"</span>],
+  <span class="j-key">"knowledge_base"</span>: [<span class="j-val">"Elasticsearch"</span>, <span class="j-val">"SQL"</span>, <span class="j-val">"PostgreSQL"</span>]
+}</code></pre>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="education" class="editor-section">
+                        <div class="code-block-wrapper">
+                            <div class="line-numbers"><span>31</span><span>32</span><span>33</span><span>34</span><span>35</span></div>
+                            <div class="code-content">
+                                <div class="edu-item">
+                                    <div class="edu-title"># TARGET: GRADUATION_RECORD</div>
+                                    <div class="edu-detail"><span class="syntax-keyword">institution</span> = "S.G.S.I.T.S., Indore"</div>
+                                    <div class="edu-detail"><span class="syntax-keyword">degree</span> = "Bachelor of Technology, Information Technology"</div>
+                                    <div class="edu-detail"><span class="syntax-keyword">duration</span> = "2017 - 2021"</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="md-form mb-0">
-                                    <textarea type="text" id="form76" class="md-textarea form-control"
-                                              rows="3"> </textarea>
-                                    <label for="form76">Your message</label>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <div class="text-center text-md-left mt-4">
-                        <a class="btn btn-primary waves-effect waves-light"> Send </a></div>
+                    </section>
+
                 </div>
 
-                <div class="col-md-4">
-                    <ul class="contact-icons list-unstyled text-center">
-                        <li>
-                            <i class="fas fa-map-marker-alt fa-2x"> </i>
-                            <p>Shiv Nest Palace, Indore (M.P.), India</p>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone fa-2x"> </i>
-                            <p>+91 896-247-9968</p>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope fa-2x"> </i>
-                            <p>rishi.chawla14@gmail.com</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+                <footer class="ide-footer">
+                    <div class="console-log" id="sysConsole">> Ready. Diagnostics healthy.</div>
+                    <div class="footer-meta">Ln 1, Col 1 // LF // UTF-8 // Env: Active</div>
+                </footer>
+
+            </main>
+        </div>
     </div>
-</main>
 
-<div class="dotted-scrollspy clearfix d-none d-sm-block">
-    <ul class="nav smooth-scroll flex-column">
-        <li class="nav-item">
-            <a class="nav-link" href="#home"><span> </span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#about"><span> </span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#skills"><span> </span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#works"><span> </span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="#contact"><span> </span></a>
-        </li>
-    </ul>
-</div>
-
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="js/popper.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/mdb.min.js"></script>
-<script type="text/javascript" src="js/jquery.countTo.js"></script>
-<script src="js/script.js"></script>
-<div class="hiddendiv common"></div>
-<script>
-    $('body').scrollspy({
-        target: '.dotted-scrollspy'
-    });
-    $(function () {
-        $("#mdb-lightbox-ui").load("../mdb-addons/mdb-lightbox-ui.html");
-    });
-    $('.navbar-collapse a').click(function () {
-        $(".navbar-collapse").collapse('hide');
-    });
-    new WOW().init();
-</script>
+    <script src="script.js" defer></script>
 </body>
 </html>
