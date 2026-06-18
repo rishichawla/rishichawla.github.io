@@ -1,64 +1,120 @@
-// 1. Core State Engine Mapping for Tab Routing
+// --- DOM Elements ---
+const sectionsTrack = document.getElementById('sectionsTrack');
+const sections = document.querySelectorAll('.editor-section');
 const navItems = document.querySelectorAll('.nav-item');
 const tabItems = document.querySelectorAll('.tab-item');
-const sections = document.querySelectorAll('.editor-section');
+const fullscreenBtn = document.getElementById('fullscreenBtn');
 const sysConsole = document.getElementById('sysConsole');
+const glow = document.getElementById('glow');
+const themeBtn = document.getElementById('themeBtn');
 
-function switchEnvironmentTab(targetId) {
-    // Drop execution focus arrays on all components
-    navItems.forEach(item => item.classList.remove('active'));
-    tabItems.forEach(tab => tab.classList.remove('active'));
-    sections.forEach(sec => sec.classList.remove('active'));
+const sectionOrder = ['about', 'experience', 'skills', 'education'];
+let currentActiveIndex = 0;
+let isThrottledScrollActive = false;
 
-    // Highlight selected operational vectors
-    const activeNav = document.querySelector(`.nav-item[data-target="${targetId}"]`);
-    const activeTab = document.getElementById(`tab-${targetId}`);
-    const activeSection = document.getElementById(targetId);
+// --- Application Core Routing ---
+function navigateToTargetSectionIndex(index) {
+    if (index < 0 || index >= sectionOrder.length) return;
+    
+    currentActiveIndex = index;
+    const currentTargetId = sectionOrder[currentActiveIndex];
 
-    if(activeNav) activeNav.classList.add('active');
-    if(activeTab) activeTab.classList.add('active');
-    if(activeSection) {
-        activeSection.classList.add('active');
-        // Instantly snap internal canvas scope safely back to top frame lines
-        document.querySelector('.editor-stage').scrollTop = 0;
-    }
+    // Slide track Y-axis transformation
+    sectionsTrack.style.transform = `translateY(-${currentActiveIndex * 100}%)`;
 
-    // Output real-time diagnostic stream telemetry
-    sysConsole.textContent = `> Cat pipeline initialized successfully: opening standard stream stack context // ${targetId}.env`;
+    // Visual active states update
+    sections.forEach((sec, idx) => {
+        sec.classList.toggle('active', idx === currentActiveIndex);
+    });
+
+    navItems.forEach(item => {
+        item.classList.toggle('active', item.getAttribute('data-target') === currentTargetId);
+    });
+
+    tabItems.forEach(tab => {
+        tab.classList.toggle('active', tab.getAttribute('data-target') === currentTargetId);
+    });
+
+    typeConsole(`> Memory pointer shifted -> Buffered [${currentTargetId}.env]`);
 }
 
-// Attach event listeners to sidebar list trees
-navItems.forEach(item => {
-    item.addEventListener('click', () => {
-        switchEnvironmentTab(item.getAttribute('data-target'));
+// Map Clicks
+[...navItems, ...tabItems].forEach(el => {
+    el.addEventListener('click', () => {
+        const targetIndex = sectionOrder.indexOf(el.getAttribute('data-target'));
+        navigateToTargetSectionIndex(targetIndex);
     });
 });
 
-// Attach event listeners to top horizontal control bar tabs
-tabItems.forEach(tab => {
-    tab.addEventListener('click', () => {
-        switchEnvironmentTab(tab.getAttribute('data-target'));
-    });
+// --- Mouse Wheel Slide Engine ---
+window.addEventListener('wheel', (event) => {
+    const activeSectionElement = sections[currentActiveIndex];
+    
+    if (activeSectionElement.scrollHeight > activeSectionElement.clientHeight) {
+        const sortingDirection = event.deltaY;
+        const reachedPageFloor = (activeSectionElement.scrollHeight - activeSectionElement.scrollTop) <= (activeSectionElement.clientHeight + 5);
+        const reachedPageCeiling = activeSectionElement.scrollTop === 0;
+        
+        if (sortingDirection > 0 && !reachedPageFloor) return;
+        if (sortingDirection < 0 && !reachedPageCeiling) return;
+    }
+
+    if (isThrottledScrollActive) return;
+
+    if (event.deltaY > 30) {
+        if (currentActiveIndex < sectionOrder.length - 1) {
+            triggerThrottledSlideTransition(currentActiveIndex + 1);
+        }
+    } else if (event.deltaY < -30) {
+        if (currentActiveIndex > 0) {
+            triggerThrottledSlideTransition(currentActiveIndex - 1);
+        }
+    }
+}, { passive: true });
+
+function triggerThrottledSlideTransition(targetIndex) {
+    isThrottledScrollActive = true;
+    navigateToTargetSectionIndex(targetIndex);
+    setTimeout(() => { isThrottledScrollActive = false; }, 700); 
+}
+
+fullscreenBtn.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(e => console.log(e));
+        typeConsole('> Display mode expanded to fullscreen matrix.');
+    } else {
+        document.exitFullscreen();
+        typeConsole('> Returned to standard window bounds.');
+    }
 });
 
-// 2. Interactive Backglow Tracking Matrix
-const glow = document.getElementById('glow');
+// --- Environmental Ambient Utilities ---
 window.addEventListener('mousemove', (e) => {
     glow.style.left = e.clientX + 'px';
     glow.style.top = e.clientY + 'px';
 });
 
-// 3. Environment Dark/Light Hardware State Toggle Controls
-const themeBtn = document.getElementById('themeBtn');
-const root = document.documentElement;
 themeBtn.addEventListener('click', () => {
-    const currentTheme = root.getAttribute('data-theme');
-    const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    const root = document.documentElement;
+    const targetTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     root.setAttribute('data-theme', targetTheme);
-    sysConsole.textContent = `> UI Theme vector reset. Active state compiled parameters -> theme:${targetTheme}`;
+    typeConsole(`> Environment theme recompiled -> param:${targetTheme}`);
 });
 
-// 4. Randomized Live Execution Threads inside System Footer Bar
+// --- Terminal Typing Logic ---
+let typingInterval;
+function typeConsole(text) {
+    clearInterval(typingInterval);
+    sysConsole.textContent = '';
+    let i = 0;
+    typingInterval = setInterval(() => {
+        sysConsole.textContent += text.charAt(i);
+        i++;
+        if (i >= text.length) clearInterval(typingInterval);
+    }, 25);
+}
+
+// Start Random execution loop telemetry
 const networkLogs = [
     "> Cluster mapping: Kafka clusters operating at 100% execution boundaries.",
     "> Memory optimization: JVM garbage collector sweep released 0b leaks.",
@@ -66,7 +122,5 @@ const networkLogs = [
     "> Runtime Security: mTLS Handshake verified securely against connection parameters."
 ];
 setInterval(() => {
-    if (Math.random() > 0.6) {
-        sysConsole.textContent = networkLogs[Math.floor(Math.random() * networkLogs.length)];
-    }
-}, 4500);
+    if (Math.random() > 0.6) typeConsole(networkLogs[Math.floor(Math.random() * networkLogs.length)]);
+}, 7000);

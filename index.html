@@ -3,179 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rishi Chawla | Full-Screen Environment</title>
+    <title>Rishi Chawla | Engineering Portfolio</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="cursor-glow" id="glow"></div>
-
     <div class="ide-container">
         
+        <!-- Top Window Title Bar -->
         <header class="ide-header">
             <div class="window-controls">
                 <span class="dot dot-close"></span>
                 <span class="dot dot-minimize"></span>
-                <span class="dot dot-expand"></span>
+                <span class="dot dot-expand" id="fullscreenBtn" title="Toggle Fullscreen"></span>
             </div>
-            <div class="window-title">rishi@mbp: ~/workspace/portfolio — zsh — 110×45</div>
-            <div class="header-right">
-                <button class="theme-toggle" id="themeBtn" aria-label="Toggle Theme">
-                    <svg class="dark-icon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.11 5.4 5.4 0 0 1-5.4-5.4c0-2.14 1.25-3.97 3.06-4.82C13.56 3.06 12.79 3 12 3z"/></svg>
-                    <svg class="light-icon" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 0 0-1.41 0 .996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 0 0-1.41 0 .996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm-12.37 1.41a.996.996 0 0 0 0-1.41.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM18.36 5.64a.996.996 0 0 0 0-1.41.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
+            <div class="window-title">rishi@mbp: ~/portfolio</div>
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeBtn">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                        <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.11 5.4 5.4 0 0 1-5.4-5.4c0-2.14 1.25-3.97 3.06-4.82C13.56 3.06 12.79 3 12 3z"/>
+                    </svg>
                 </button>
             </div>
         </header>
 
         <div class="ide-body">
             
-            <aside class="ide-sidebar">
-                <div>
-                    <div class="sidebar-title">WORKSPACE EXPLORER</div>
-                    <div class="file-tree">
-                        <div class="tree-folder">📁 src/rishi-chawla</div>
-                        <button class="tree-file nav-item active" data-target="about">📄 readme.md</button>
-                        <button class="tree-file nav-item" data-target="experience">📄 experience.java</button>
-                        <button class="tree-file nav-item" data-target="skills">📄 env_stack.json</button>
-                        <button class="tree-file nav-item" data-target="education">📄 education.conf</button>
-                    </div>
+            <!-- Sidebar Navigation (Hidden on mobile entirely) -->
+            <aside class="ide-sidebar" id="sidebar">
+                <div class="sidebar-title">WORKSPACE EXPLORER</div>
+                <div class="file-tree">
+                    <div class="tree-folder">📁 src/rishi-chawla</div>
+                    <button class="tree-file nav-item active" data-target="about">📄 readme.md</button>
+                    <button class="tree-file nav-item" data-target="experience">📄 experience.java</button>
+                    <button class="tree-file nav-item" data-target="skills">📄 env_stack.json</button>
+                    <button class="tree-file nav-item" data-target="education">📄 education.conf</button>
                 </div>
                 <div class="sidebar-actions">
                     <a href="Rishi_Chawla_CV_June_2026.pdf" download="Rishi_Chawla_Resume.pdf" class="sidebar-btn">
-                        📥 Export System Blueprint (PDF)
+                        📥 Download CV
                     </a>
                 </div>
             </aside>
 
+            <!-- Main Editor Area -->
             <main class="ide-editor">
                 
+                <!-- Tab Bar (Acts as the primary menu on mobile) -->
                 <div class="editor-tabs">
-                    <div class="tab-item active" id="tab-about" data-target="about">readme.md <span class="tab-close">×</span></div>
-                    <div class="tab-item" id="tab-experience" data-target="experience">experience.java <span class="tab-close">×</span></div>
-                    <div class="tab-item" id="tab-skills" data-target="skills">env_stack.json <span class="tab-close">×</span></div>
-                    <div class="tab-item" id="tab-education" data-target="education">education.conf <span class="tab-close">×</span></div>
+                    <div class="tab-item active" data-target="about">readme.md <span class="tab-close">×</span></div>
+                    <div class="tab-item" data-target="experience">experience.java <span class="tab-close">×</span></div>
+                    <div class="tab-item" data-target="skills">env_stack.json <span class="tab-close">×</span></div>
+                    <div class="tab-item" data-target="education">education.conf <span class="tab-close">×</span></div>
                 </div>
 
+                <!-- Vertical Sliding Track -->
                 <div class="editor-stage">
-                    
-                    <section id="about" class="editor-section active">
-                        <div class="code-block-wrapper">
-                            <div class="line-numbers"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span></div>
-                            <div class="code-content">
-                                <h1 class="glitch-text">Rishi Chawla</h1>
-                                <h2 class="sub-role">&lt;Backend Software Engineer /&gt;</h2>
-                                <p class="summary-text">
-                                    Backend Software Engineer with 5 years of experience building distributed systems, event-driven microservices, and high-throughput data pipelines using Java, Spring Boot, and Apache Kafka. Proven record of owning features end-to-end from architecture through production at scale across fintech, e-commerce, and financial services domains.
-                                </p>
-                                <div class="contact-links">
-                                    <a href="mailto:rishi.chawla14@gmail.com" class="interactive-link"><span>📧 rishi.chawla14@gmail.com</span></a>
-                                    <a href="https://linkedin.com/in/rishichawla14" target="_blank" rel="noopener" class="interactive-link"><span>🔗 LinkedIn</span></a>
-                                    <a href="https://github.com/rishichawla" target="_blank" rel="noopener" class="interactive-link"><span>🐙 GitHub</span></a>
+                    <div class="editor-sections-track" id="sectionsTrack">
+                        
+                        <!-- ABOUT SECTION -->
+                        <section id="about" class="editor-section active">
+                            <div class="code-block-wrapper">
+                                <div class="line-numbers"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
+                                <div class="code-content">
+                                    <h1 class="glitch-text">Rishi Chawla</h1>
+                                    <h2 class="sub-role">&lt;Backend Software Engineer /&gt;</h2>
+                                    <p class="summary-text">
+                                        Backend Software Engineer with 5 years of experience building distributed systems, event-driven microservices using Java, Spring Boot, and Apache Kafka. Proven record of owning features end-to-end from architecture through production at scale across fintech, e-commerce, and financial services domains.
+                                    </p>
+                                    <div class="contact-links">
+                                        <a href="mailto:rishi.chawla14@gmail.com" class="interactive-link">📧 rishi.chawla14@gmail.com</a>
+                                        <a href="https://linkedin.com/in/rishichawla14" target="_blank" rel="noopener" class="interactive-link">🔗 LinkedIn</a>
+                                        <a href="https://github.com/rishichawla" target="_blank" rel="noopener" class="interactive-link">🐙 GitHub</a>
+                                        <a href="Rishi_Chawla_CV_June_2026.pdf" download="Rishi_Chawla_Resume.pdf" class="interactive-link resume-mobile-btn">📥 Download CV (PDF)</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
 
-                    <section id="experience" class="editor-section">
-                        <div class="code-block-wrapper job-entry">
-                            <div class="line-numbers"><span>08</span><span>09</span><span>10</span><span>11</span><span>12</span><span>13</span></div>
-                            <div class="code-content">
-                                <div class="job-headline">
-                                    <span class="syntax-keyword">public class</span> <span class="syntax-class">IntuitExperience</span> {
-                                    <span class="job-time">// Oct 2024 - Present | Bengaluru, India</span>
+                        <!-- EXPERIENCE SECTION -->
+                        <section id="experience" class="editor-section">
+                            
+                            <!-- Intuit -->
+                            <div class="code-block-wrapper job-entry">
+                                <div class="line-numbers"><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span></div>
+                                <div class="code-content">
+                                    <div class="job-headline">
+                                        <span><span class="syntax-keyword">public class</span> <span class="syntax-class">IntuitExperience</span> {</span>
+                                        <span class="job-time">// Oct 2024 - Present | Bengaluru, India</span>
+                                    </div>
+                                    <div class="job-sub">Role: Software Engineer 2</div>
+                                    <ul class="bullet-list">
+                                        <li>Designed and deployed a Kafka-based asynchronous export pipeline using Spring Boot, decoupling report generation from request threads to eliminate timeouts; processed 34K+ export emails and handled 10%+ of peak traffic.</li>
+                                        <li>Architected migration of browser-rendered report exports to an async, fault-tolerant backend PDF generation service backed by AWS S3, eliminating client-side rendering failures and enabling reliable delivery at scale.</li>
+                                        <li>Built a generic template engine and config-driven data transformer in Java, enabling the Certified Payroll Report, to be delivered without code changes; extensible to onboard future report formats via configuration alone.</li>
+                                        <li>Implemented gateway-level request isolation in the export service to prevent noisy-neighbor interference across requests, reducing export-related production incidents from ~1/month to zero.</li>
+                                        <li>Drove end-to-end delivery of the large-report feature spanning distributed system design, bug resolution, and production rollout enabling 20K+ report views/month for previously unsupported dataset sizes.</li>
+                                        <li>Participated in migrating 150+ standard report definitions and 35M+ custom reports from a legacy system to the Custom Report Builder framework, contributing to schema mapping and validation pipelines.</li>
+                                        <li>Mentored 2 summer interns; led incident response, authored RCAs, and coordinated peak readiness.</li>
+                                    </ul>
+                                    <div class="syntax-keyword">}</div>
                                 </div>
-                                <div class="job-sub">Team: QuickBooks Reporting // Software Engineer 2</div>
-                                <ul class="bullet-list">
-                                    <li>Designed and deployed a Kafka-based asynchronous export pipeline using Spring Boot, decoupling report generation from request threads to eliminate timeouts; processed 34K+ export emails and handled 10%+ of peak traffic.</li>
-                                    <li>Architected migration of browser-rendered report exports to an async, fault-tolerant backend PDF generation service backed by AWS S3, eliminating client-side rendering failures and enabling reliable delivery at scale.</li>
-                                    <li>Built a generic template engine and config-driven data transformer in Java, enabling the Certified Payroll Report to be delivered without code changes.</li>
-                                    <li>Implemented thread-level request isolation in the export service to prevent noisy-neighbor interference across tenants, reducing export-related production incidents from ~1/month to zero.</li>
-                                    <li>Drove end-to-end delivery of the large-report feature spanning distributed system design, enabling 20K+ report views/month.</li>
-                                </ul>
-                                <div class="syntax-keyword">}</div>
                             </div>
-                        </div>
 
-                        <div class="code-block-wrapper job-entry">
-                            <div class="line-numbers"><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span></div>
-                            <div class="code-content">
-                                <div class="job-headline">
-                                    <span class="syntax-keyword">public class</span> <span class="syntax-class">WalmartGlobalTech</span> {
-                                    <span class="job-time">// Sep 2023 - Oct 2024 | Bengaluru, India</span>
+                            <!-- Walmart -->
+                            <div class="code-block-wrapper job-entry">
+                                <div class="line-numbers"><span>12</span><span>13</span><span>14</span><span>15</span></div>
+                                <div class="code-content">
+                                    <div class="job-headline">
+                                        <span><span class="syntax-keyword">public class</span> <span class="syntax-class">WalmartGlobalTech</span> {</span>
+                                        <span class="job-time">// Sep 2023 - Oct 2024 | Bengaluru, India</span>
+                                    </div>
+                                    <div class="job-sub">Role: Software Engineer III</div>
+                                    <ul class="bullet-list">
+                                        <li>Built a runtime script-interception layer to monitor and govern third-party JavaScript within browser sessions, enforcing PCI DSS compliance controls across Walmart's consumer web applications.</li>
+                                        <li>Engineered a network intelligence search platform consolidating data from multiple internal sources using Spring Boot and Apache Kafka, achieving sub-5s query latency and 24-hour data freshness.</li>
+                                        <li>Implemented mTLS and IP-based allowlisting to secure a core Firewall-as-a-Service API endpoint, overcoming hardware device constraints that prevented header-based authentication to satisfy strict security compliance.</li>
+                                        <li>Designed an event-driven cloud architecture using Azure Event Grid to intercept VM lifecycle events, enabling automated synchronization of newly provisioned compute IP addresses to downstream hardware firewalls.</li>
+                                    </ul>
+                                    <div class="syntax-keyword">}</div>
                                 </div>
-                                <div class="job-sub">Team: InfoSec // Software Engineer III</div>
-                                <ul class="bullet-list">
-                                    <li>Built a runtime script-interception layer to monitor and govern third-party JavaScript within browser sessions, enforcing PCI DSS compliance controls across consumer web properties.</li>
-                                    <li>Engineered a distributed network intelligence search platform consolidating data from multiple internal sources using Elasticsearch, achieving sub-5s query latency and 24-hour data freshness.</li>
-                                    <li>Implemented mTLS and IP-based allowlisting to secure a core Firewall-as-a-Service API endpoint, overcoming hardware device constraints.</li>
-                                    <li>Designed an event-driven cloud architecture using Azure Event Grid to intercept VM lifecycle events, enabling automated synchronization of compute IP addresses.</li>
-                                </ul>
-                                <div class="syntax-keyword">}</div>
                             </div>
-                        </div>
 
-                        <div class="code-block-wrapper job-entry">
-                            <div class="line-numbers"><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span></div>
-                            <div class="code-content">
-                                <div class="job-headline">
-                                    <span class="syntax-keyword">public class</span> <span class="syntax-class">GoldmanSachs</span> {
-                                    <span class="job-time">// Jun 2021 - Sep 2023 | Bengaluru, India</span>
+                            <!-- Goldman Sachs -->
+                            <div class="code-block-wrapper job-entry">
+                                <div class="line-numbers"><span>16</span><span>17</span><span>18</span><span>19</span></div>
+                                <div class="code-content">
+                                    <div class="job-headline">
+                                        <span><span class="syntax-keyword">public class</span> <span class="syntax-class">GoldmanSachs</span> {</span>
+                                        <span class="job-time">// Jun 2021 - Sep 2023 | Bengaluru, India</span>
+                                    </div>
+                                    <div class="job-sub">Role: Analyst</div>
+                                    <ul class="bullet-list">
+                                        <li>Engineered a scheduled batch processing pipeline parsing 600K customer records to identify 12K+ eligible Cash ISA renewals annually and trigger automated downstream servicing flows.</li>
+                                        <li>Reduced agent handling time by 5 minutes per case by building an automated KYC identity verification workflow, eliminating redundant manual steps at scale.</li>
+                                        <li>Migrated full-text search from a third-party dependency to a self-hosted Elasticsearch service, adding contextual relevance scoring, faceted filters, and fuzzy matching from scratch.</li>
+                                        <li>Shipped core features for an internal Digital Assistant adopted by 45K employees globally.</li>
+                                    </ul>
+                                    <div class="syntax-keyword">}</div>
                                 </div>
-                                <div class="job-sub">Team: UK Deposits & Digital Workplace Engineering // Analyst</div>
-                                <ul class="bullet-list">
-                                    <li>Engineered a scheduled batch processing pipeline parsing 600K customer records to identify 12K+ eligible Cash ISA renewals annually and trigger automated downstream servicing flows.</li>
-                                    <li>Reduced agent handling time by 5 minutes per case by building an automated KYC identity verification workflow, eliminating redundant manual steps at scale.</li>
-                                    <li>Migrated full-text search from a third-party dependency to a self-hosted Elasticsearch service, adding contextual relevance scoring, faceted filters, and fuzzy matching.</li>
-                                    <li>Shipped core features for an internal Digital Assistant adopted by 45K employees globally.</li>
-                                </ul>
-                                <div class="syntax-keyword">}</div>
                             </div>
-                        </div>
-                    </section>
 
-                    <section id="skills" class="editor-section">
-                        <div class="code-block-wrapper">
-                            <div class="line-numbers"><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span></div>
-                            <div class="code-content">
+                        </section>
+
+                        <!-- SKILLS SECTION -->
+                        <section id="skills" class="editor-section">
+                            <div class="code-block-wrapper">
+                                <div class="line-numbers"><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span></div>
+                                <div class="code-content">
 <pre class="json-output"><code>{
   <span class="j-key">"languages"</span>: [<span class="j-val">"Java"</span>, <span class="j-val">"Golang"</span>, <span class="j-val">"TypeScript"</span>, <span class="j-val">"JavaScript"</span>],
   <span class="j-key">"backend_ecosystem"</span>: [<span class="j-val">"Spring Boot"</span>, <span class="j-val">"Microservices"</span>, <span class="j-val">"REST APIs"</span>, <span class="j-val">"Distributed Systems"</span>],
-  <span class="j-key">"infrastructure_data"</span>: [<span class="j-val">"Apache Kafka"</span>, <span class="j-val">"AWS S3/EC2"</span>, <span class="j-val">"Docker"</span>, <span class="j-val">"Kubernetes"</span>, <span class="j-val">"Jenkins"</span>],
+  <span class="j-key">"infrastructure_data"</span>: [<span class="j-val">"Apache Kafka"</span>, <span class="j-val">"AWS (S3, EC2)"</span>, <span class="j-val">"Docker"</span>, <span class="j-val">"Kubernetes"</span>, <span class="j-val">"CI/CD (Jenkins)"</span>, <span class="j-val">"Splunk"</span>],
   <span class="j-key">"frontend"</span>: [<span class="j-val">"React"</span>, <span class="j-val">"Angular"</span>],
-  <span class="j-key">"knowledge_base"</span>: [<span class="j-val">"Elasticsearch"</span>, <span class="j-val">"SQL"</span>, <span class="j-val">"PostgreSQL"</span>]
+  <span class="j-key">"working_knowledge"</span>: [<span class="j-val">"Elasticsearch"</span>, <span class="j-val">"SQL"</span>, <span class="j-val">"PostgreSQL"</span>]
 }</code></pre>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section id="education" class="editor-section">
-                        <div class="code-block-wrapper">
-                            <div class="line-numbers"><span>31</span><span>32</span><span>33</span><span>34</span><span>35</span></div>
-                            <div class="code-content">
-                                <div class="edu-item">
-                                    <div class="edu-title"># TARGET: GRADUATION_RECORD</div>
-                                    <div class="edu-detail"><span class="syntax-keyword">institution</span> = "S.G.S.I.T.S., Indore"</div>
-                                    <div class="edu-detail"><span class="syntax-keyword">degree</span> = "Bachelor of Technology, Information Technology"</div>
-                                    <div class="edu-detail"><span class="syntax-keyword">duration</span> = "2017 - 2021"</div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
 
+                        <!-- EDUCATION SECTION -->
+                        <section id="education" class="editor-section">
+                            <div class="code-block-wrapper">
+                                <div class="line-numbers"><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span></div>
+                                <div class="code-content">
+                                    <div class="edu-item">
+                                        <div class="edu-title"># TARGET: GRADUATION_RECORD</div>
+                                        <div class="edu-detail"><span class="syntax-keyword">institution</span> = "S.G.S.I.T.S., Indore"</div>
+                                        <div class="edu-detail"><span class="syntax-keyword">degree</span> = "Bachelor of Technology, Information Technology"</div>
+                                        <div class="edu-detail"><span class="syntax-keyword">duration</span> = "2017 - 2021"</div>
+                                        <div class="edu-detail"><span class="syntax-keyword">location</span> = "Indore, India"</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
                 </div>
-
-                <footer class="ide-footer">
-                    <div class="console-log" id="sysConsole">> Ready. Diagnostics healthy.</div>
-                    <div class="footer-meta">Ln 1, Col 1 // LF // UTF-8 // Env: Active</div>
-                </footer>
-
             </main>
         </div>
+
+        <!-- Terminal Footer -->
+        <footer class="ide-footer">
+            <div class="console-log" id="sysConsole">> System initialized. Waiting for input...</div>
+            <div class="footer-meta">UTF-8 // Production Context // &copy; 2026</div>
+        </footer>
+
     </div>
 
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
 </body>
 </html>

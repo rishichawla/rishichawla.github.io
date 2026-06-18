@@ -1,383 +1,249 @@
-/* --- Ultimate Immersive Full-Screen Layout Theme --- */
+/* --- High-End Workspace Theme Configuration --- */
 :root[data-theme="dark"] {
     --bg-outside: #05050a;
-    --app-bg: #090c10;
-    --sidebar-bg: #11141a;
-    --titlebar-bg: #181c24;
-    --tab-active: #090c10;
-    --tab-inactive: #141820;
-    --border: rgba(240, 246, 252, 0.08);
+    --app-bg: #0d1117;
+    --sidebar-bg: #161b22;
+    --titlebar-bg: #21262d;
+    --tab-active: #0d1117;
+    --tab-inactive: #161b22;
+    --border: rgba(240, 246, 252, 0.1);
     --border-hover: #58a6ff;
-    
     --text-main: #c9d1d9;
-    --text-muted: #6e7681;
-    --text-line: #30363d;
-    
-    /* Syntax Highlighting Base */
+    --text-muted: #8b949e;
+    --text-line: #484f58;
     --syntax-kw: #ff7b72;
     --syntax-cls: #d2a8ff;
-    --syntax-str: #79c0ff;
-    --accent-glow: rgba(56, 139, 253, 0.06);
-    --btn-primary: linear-gradient(135deg, #1f6feb 0%, #388bfd 100%);
-    --btn-shadow: rgba(56, 139, 253, 0.2);
+    --syntax-str: #a5d6ff;
+    --accent-glow: rgba(56, 139, 253, 0.08);
+    --btn-primary: linear-gradient(135deg, #238636 0%, #2ea44f 100%);
+    --btn-shadow: rgba(46, 164, 79, 0.2);
 }
 
 :root[data-theme="light"] {
-    --bg-outside: #eef1f5;
+    --bg-outside: #f4f6f8;
     --app-bg: #ffffff;
-    --sidebar-bg: #f3f6f9;
-    --titlebar-bg: #e4e9ee;
+    --sidebar-bg: #f6f8fa;
+    --titlebar-bg: #eaeff4;
     --tab-active: #ffffff;
-    --tab-inactive: #e9eff4;
-    --border: rgba(31, 35, 40, 0.12);
+    --tab-inactive: #f6f8fa;
+    --border: rgba(31, 35, 40, 0.15);
     --border-hover: #0969da;
-    
     --text-main: #24292f;
-    --text-muted: #6e7781;
-    --text-line: #afb8c1;
-    
-    /* Code Highlighting Core - High contrast premium slate light */
+    --text-muted: #57606a;
+    --text-line: #57606a;
     --syntax-kw: #cf222e;
-    --syntax-cls: #8250df;
-    --syntax-str: #116329;
-    --accent-glow: rgba(9, 105, 218, 0.05);
-    --btn-primary: linear-gradient(135deg, #0969da 0%, #218bff 100%);
+    --syntax-cls: #953800;
+    --syntax-str: #1a7f37;
+    --accent-glow: rgba(9, 105, 218, 0.04);
+    --btn-primary: linear-gradient(135deg, #0969da 0%, #1f883d 100%);
     --btn-shadow: rgba(9, 105, 218, 0.15);
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     background-color: var(--bg-outside);
     color: var(--text-main);
     font-family: 'JetBrains Mono', monospace;
-    min-height: 100vh;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden; /* Prevent body scroll entirely, scroll within IDE */
+    overflow: hidden;
     transition: background-color 0.4s ease;
 }
 
-/* Ambient Cursor Cursor Tracking Glow effect */
+/* Ambient Cursor Glow */
 .cursor-glow {
-    position: fixed;
-    width: 600px;
-    height: 600px;
+    position: fixed; width: 500px; height: 500px;
     background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 1;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: opacity 0.5s ease;
+    border-radius: 50%; pointer-events: none; z-index: 1;
+    transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.5s ease;
 }
 body:hover .cursor-glow { opacity: 1; }
 
-/* The Full-Screen Application Window */
+/* Main Shell */
 .ide-container {
-    width: 100vw;
-    height: 100vh;
+    width: 100vw; height: 100vh;
     background-color: var(--app-bg);
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    z-index: 2;
+    display: flex; flex-direction: column;
+    position: relative; z-index: 2;
 }
 
-/* Application Top Frame Titlebar */
+/* Header */
 .ide-header {
     background-color: var(--titlebar-bg);
     border-bottom: 1px solid var(--border);
     padding: 0.5rem 1.25rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 42px;
-    user-select: none;
+    display: flex; justify-content: space-between; align-items: center; height: 42px;
 }
-
 .window-controls { display: flex; gap: 0.5rem; }
-.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; cursor: pointer; transition: transform 0.2s; }
+.dot:hover { transform: scale(1.2); }
 .dot-close { background-color: #ff5f56; }
 .dot-minimize { background-color: #ffbd2e; }
 .dot-expand { background-color: #27c93f; }
+.window-title { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
 
-.window-title {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    font-weight: 500;
-}
+.header-actions { display: flex; align-items: center; gap: 1rem; }
+.theme-toggle { background: transparent; border: none; color: var(--text-muted); cursor: pointer; transition: color 0.2s; }
+.theme-toggle:hover { color: var(--text-main); }
 
-.theme-toggle {
-    background: transparent;
-    border: none;
-    color: var(--text-muted);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    transition: color 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s ease;
-}
-.theme-toggle:hover { color: var(--text-main); transform: scale(1.1); }
-.theme-toggle svg { width: 15px; height: 15px; fill: currentColor; }
-.light-icon { display: none; }
-:root[data-theme="light"] .dark-icon { display: none; }
-:root[data-theme="light"] .light-icon { display: block; }
-
-/* Window UI Split Panels */
+/* Grid Body */
 .ide-body {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    flex: 1;
-    height: calc(100vh - 42px);
-    overflow: hidden;
+    display: grid; grid-template-columns: 260px 1fr;
+    flex: 1; overflow: hidden; position: relative;
 }
 
-/* File Tree Sidebar Panel Configuration */
+/* Sidebar */
 .ide-sidebar {
-    background-color: var(--sidebar-bg);
-    border-right: 1px solid var(--border);
-    padding: 1.5rem 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    user-select: none;
+    background-color: var(--sidebar-bg); border-right: 1px solid var(--border);
+    padding: 1.5rem 1rem; display: flex; flex-direction: column; justify-content: space-between;
+    transition: transform 0.3s ease; z-index: 50;
 }
-
-.sidebar-title {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
-    margin-bottom: 1.25rem;
-}
-
+.sidebar-title { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); margin-bottom: 1.25rem; letter-spacing: 0.05em; }
 .file-tree { display: flex; flex-direction: column; gap: 0.25rem; }
-.tree-folder { font-size: 0.8rem; font-weight: 600; color: var(--text-main); padding-bottom: 0.25rem; }
+.tree-folder { font-size: 0.85rem; font-weight: 600; padding-bottom: 0.5rem; }
+.nav-item {
+    font-size: 0.85rem; color: var(--text-muted); background: transparent; border: none;
+    text-align: left; font-family: inherit; cursor: pointer; padding: 0.5rem 0.75rem 0.5rem 1.5rem;
+    border-radius: 6px; transition: all 0.2s; width: 100%;
+}
+.nav-item:hover { color: var(--text-main); background-color: rgba(139, 148, 158, 0.1); }
+.nav-item.active { color: var(--text-main); background-color: var(--titlebar-bg); font-weight: 600; }
 
-.tree-file {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    background: transparent;
-    border: none;
-    text-align: left;
-    font-family: inherit;
-    cursor: pointer;
-    padding: 0.5rem 0.75rem 0.5rem 1.5rem;
-    border-radius: 6px;
-    width: 100%;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.tree-file:hover {
-    color: var(--text-main);
-    background-color: rgba(255, 255, 255, 0.03);
-    padding-left: 1.75rem; /* Micro slide out animation on hover */
-}
-:root[data-theme="light"] .tree-file:hover { background-color: rgba(0,0,0,0.03); }
-.tree-file.active {
-    color: var(--text-main);
-    background-color: var(--titlebar-bg);
-    font-weight: 600;
-}
-
+.sidebar-actions { margin-top: 1rem; }
 .sidebar-btn {
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    font-size: 0.78rem;
-    font-weight: 600;
-    padding: 0.75rem;
-    border-radius: 6px;
-    color: #fff !important;
-    background: var(--btn-primary);
-    box-shadow: 0 4px 12px var(--btn-shadow);
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+    display: block; text-align: center; text-decoration: none; font-size: 0.8rem; font-weight: 600;
+    padding: 0.65rem; border-radius: 6px; color: #fff !important; background: var(--btn-primary);
+    box-shadow: 0 4px 12px var(--btn-shadow); transition: transform 0.2s;
 }
-.sidebar-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px var(--btn-shadow);
-}
+.sidebar-btn:hover { transform: translateY(-2px); }
 
-/* Document Stage Tab Container Panels */
-.ide-editor {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-}
+/* Editor Main Area */
+.ide-editor { display: flex; flex-direction: column; height: 100%; width: 100%; overflow: hidden; }
 
-/* Functional IDE Window Tabs bar */
+/* Tabs */
 .editor-tabs {
-    display: flex;
-    background-color: var(--sidebar-bg);
-    border-bottom: 1px solid var(--border);
-    height: 38px;
-    user-select: none;
-    overflow-x: auto;
+    display: flex; background-color: var(--sidebar-bg); border-bottom: 1px solid var(--border);
+    height: 38px; flex-shrink: 0; overflow-x: auto;
 }
 .editor-tabs::-webkit-scrollbar { display: none; }
-
 .tab-item {
-    padding: 0 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    background-color: var(--tab-inactive);
-    border-right: 1px solid var(--border);
-    cursor: pointer;
-    position: relative;
-    transition: all 0.2s ease;
+    padding: 0 1.25rem; display: flex; align-items: center; gap: 0.75rem; font-size: 0.8rem;
+    color: var(--text-muted); background-color: var(--tab-inactive); border-right: 1px solid var(--border);
+    cursor: pointer; transition: all 0.2s; white-space: nowrap;
 }
-.tab-item:hover { color: var(--text-main); background-color: rgba(255,255,255,0.02); }
-:root[data-theme="light"] .tab-item:hover { background-color: rgba(0,0,0,0.02); }
+.tab-item:hover { color: var(--text-main); }
+.tab-item.active { color: var(--text-main); background-color: var(--tab-active); font-weight: 600; }
 
-.tab-item.active {
-    color: var(--text-main);
-    background-color: var(--tab-active);
-    font-weight: 500;
-    height: calc(100% + 1px);
-    z-index: 2;
-}
-/* Active top accent indicator strip on active tabs */
-.tab-item.active::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; height: 2px;
-    background: var(--btn-primary);
-}
-
-.tab-close { font-size: 0.9rem; opacity: 0.5; transition: opacity 0.2s; }
-.tab-close:hover { opacity: 1; color: #ff5f56; }
-
-/* Core Layout Container for Active Sections */
+/* Canvas Stage */
 .editor-stage {
-    flex: 1;
-    overflow-y: auto;
-    padding: 2.5rem;
-    padding-bottom: 6rem;
-    position: relative;
+    flex: 1; position: relative; background-color: var(--app-bg); overflow: hidden;
+    background-image: radial-gradient(var(--border) 1px, transparent 1px); background-size: 24px 24px;
+}
+.editor-sections-track {
+    display: flex; flex-direction: column; width: 100%; height: 100%;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Animation Canvas Keyframes For Loading Tabs */
 .editor-section {
-    display: none;
-    opacity: 0;
-    transform: translateY(8px) scale(0.995);
-    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 100%; height: 100%; flex-shrink: 0; padding: 2.5rem 5%;
+    overflow-y: auto; opacity: 0.3; transition: opacity 0.4s ease;
 }
-.editor-section.active {
-    display: block;
-    opacity: 1;
-    transform: translateY(0) scale(1);
-}
+.editor-section.active { opacity: 1; }
 
-/* Internal Architecture Formatting rules */
+/* Typography & Layout inside Code Canvas */
 .code-block-wrapper { display: flex; margin-bottom: 2rem; }
-.line-numbers {
-    width: 45px;
-    text-align: right;
-    padding-right: 1.5rem;
-    color: var(--text-line);
-    font-size: 0.85rem;
-    user-select: none;
-    line-height: 1.75;
-}
+.line-numbers { width: 45px; text-align: right; padding-right: 1.5rem; color: var(--text-line); font-size: 0.85rem; user-select: none; line-height: 1.75; }
 .line-numbers span { display: block; }
 .code-content { flex: 1; line-height: 1.75; }
 
-/* Dynamic Layout Animations Content Details */
-.glitch-text {
-    font-size: 2.75rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.25rem;
-    animation: textIntro 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-@keyframes textIntro {
-    0% { transform: translateX(-10px); opacity: 0; }
-    100% { transform: translateX(0); opacity: 1; }
-}
+.glitch-text { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.25rem; font-family: 'Plus Jakarta Sans', sans-serif; }
+.sub-role { font-size: 1.2rem; color: var(--border-hover); font-weight: 500; margin-bottom: 1.5rem; }
+.summary-text { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; line-height: 1.8; margin-bottom: 1.5rem; max-width: 800px; }
 
-.sub-role { font-size: 1.25rem; color: var(--border-hover); font-weight: 500; margin-bottom: 2rem; }
-.summary-text { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.05rem; line-height: 1.8; color: var(--text-main); max-width: 850px; margin-bottom: 2rem; }
+.contact-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+.interactive-link { font-size: 0.85rem; color: var(--text-main); text-decoration: none; border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 6px; transition: all 0.3s; background: var(--sidebar-bg); }
+.interactive-link:hover { border-color: var(--border-hover); transform: translateY(-2px); }
 
-.contact-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
-.interactive-link {
-    font-size: 0.85rem;
-    color: var(--text-main);
-    text-decoration: none;
-    border: 1px solid var(--border);
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    background: rgba(255,255,255,0.01);
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-.interactive-link:hover {
-    border-color: var(--border-hover);
-    transform: translateY(-2px);
-}
-
-/* Professional Timeline Nodes */
-.job-entry {
-    border-left: 2px solid var(--border);
-    padding-left: 1.5rem;
-    margin-bottom: 3.5rem;
-    transition: border-color 0.3s ease;
-}
+.job-entry { border-left: 2px solid var(--border); padding-left: 1.5rem; margin-bottom: 3rem; transition: border-color 0.3s; }
 .job-entry:hover { border-color: var(--border-hover); }
+.job-headline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; font-size: 1.05rem; font-weight: 600; }
+.job-time { font-size: 0.8rem; color: var(--text-muted); }
+.job-sub { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; }
+.bullet-list { list-style-type: none; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.95rem; }
+.bullet-list li { position: relative; padding-left: 1.25rem; margin-bottom: 0.75rem; line-height: 1.7; }
+.bullet-list li::before { content: "↳"; position: absolute; left: 0; color: var(--border-hover); }
 
-.job-headline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; font-size: 1.1rem; font-weight: 600; }
-.job-time { font-size: 0.8rem; color: var(--text-muted); font-weight: 400; }
-.job-sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem; font-weight: 500; }
-
-.bullet-list { list-style-type: none; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.98rem; }
-.bullet-list li { position: relative; padding-left: 1.5rem; margin-bottom: 0.75rem; color: var(--text-main); line-height: 1.7; }
-.bullet-list li::before { content: "↳"; position: absolute; left: 0; color: var(--border-hover); opacity: 0.7; }
-
-/* Syntax Coloration Rules */
 .syntax-keyword { color: var(--syntax-kw); font-weight: 600; }
 .syntax-class { color: var(--syntax-cls); font-weight: 600; }
 .json-output { font-family: inherit; font-size: 0.9rem; line-height: 1.7; }
 .j-key { color: var(--syntax-kw); }
 .j-val { color: var(--syntax-str); }
 
-.edu-item { line-height: 2; font-size: 0.95rem; }
-.edu-title { color: var(--syntax-cls); font-weight: 600; margin-bottom: 0.75rem; }
+.edu-item { line-height: 1.8; font-size: 0.95rem; }
+.edu-title { color: var(--syntax-cls); font-weight: 600; margin-bottom: 0.5rem; }
+.edu-detail { padding-left: 1rem; }
 
-/* Master App Windows Console Output Logs Footer */
+/* Footer Console */
 .ide-footer {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 32px;
-    background-color: var(--sidebar-bg);
-    border-top: 1px solid var(--border);
-    padding: 0 1.25rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.72rem;
-    color: var(--text-muted);
-    user-select: none;
-    z-index: 10;
+    position: absolute; bottom: 0; left: 0; right: 0; height: 32px;
+    background-color: var(--sidebar-bg); border-top: 1px solid var(--border);
+    padding: 0 1.25rem; display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.75rem; color: var(--text-muted); z-index: 10;
 }
-.console-log { color: #27c93f; font-weight: 600; animation: pulseGlow 2s infinite ease-in-out; }
-@keyframes pulseGlow { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
+.console-log { color: #27c93f; font-weight: 600; }
 
-/* Mobile Systems Fluid UI Adaptations */
+/* Hidden button by default on desktop, shown inside readme links on mobile */
+.resume-mobile-btn {
+    display: none;
+}
+
+/* Mobile View Handling - No Drawer Setup */
 @media (max-width: 850px) {
-    .ide-body { grid-template-columns: 1fr; }
-    .ide-sidebar { display: none; } /* Drop sidebar on phone screen matrices */
-    .editor-stage { padding: 1.25rem; }
-    .job-headline { flex-direction: column; gap: 0.25rem; }
-    .line-numbers { display: none; }
+    /* Hide the complete sidebar structure */
+    .ide-sidebar { 
+        display: none !important; 
+    }
+    
+    /* Make editor container span the complete screen base width */
+    .ide-body { 
+        grid-template-columns: 1fr; 
+    }
+    
+    /* Show tab bar with horizontal swipeability */
+    .editor-tabs {
+        display: flex;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .tab-item {
+        padding: 0 1rem;
+        font-size: 0.85rem;
+    }
+
+    /* Soft inner padding modifications for readable content canvas scales */
+    .editor-section { 
+        padding: 1.5rem 1rem 3.5rem 1rem; 
+    }
+    
+    .line-numbers { 
+        display: none; 
+    }
+    
+    .glitch-text {
+        font-size: 2rem;
+    }
+    
+    .job-headline { 
+        flex-direction: column; 
+        gap: 0.15rem;
+    }
+    
+    /* Display mobile resume download link elegantly inside the readme content */
+    .resume-mobile-btn {
+        display: inline-block;
+        background: var(--btn-primary);
+        color: #fff !important;
+        border: none;
+    }
 }
